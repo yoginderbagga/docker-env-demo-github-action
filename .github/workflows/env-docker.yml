@@ -17,5 +17,26 @@ jobs:
           echo "Initializing Docker Authentication..."
           echo "$DOCKER_PASS" | docker login -u "$DOCKER_USER" --password-stdin
  #         echo "These are the images: $(docker images)"
-    
+         Step 2: Generate mock logs and a test report file
+
+      - name: Create Test Reports and Logs
+        run: |
+          echo "Creating a folder for our test results..."
+          mkdir -p output/reports
+          
+          echo "Generating mock log data..."
+          echo "[INFO] Docker login succeeded at $(date)" > output/app.log
+          echo "[SUCCESS] All checks passed successfully." >> output/app.log
+          
+          echo "Generating mock test report..."
+          echo "Test Case 1: Docker Login - PASSED" > output/reports/test-summary.txt
+          echo "Test Case 2: Connection Status - PASSED" >> output/reports/test-summary.txt
+
+      # Step 3: Save the files as an Artifact in GitHub
+      - name: Upload Logs and Test Reports
+        uses: actions/upload-artifact@v4
+        with:
+          name: pipeline-execution-logs    # This will be the name of the zip file
+          path: output/                    # This uploads the entire 'output' folder
+          retention-days: 5            
 
