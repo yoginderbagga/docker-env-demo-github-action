@@ -16,8 +16,8 @@ jobs:
         run: |
           echo "Initializing Docker Authentication..."
           echo "$DOCKER_PASS" | docker login -u "$DOCKER_USER" --password-stdin
- #         echo "These are the images: $(docker images)"
-         Step 2: Generate mock logs and a test report file
+
+       #  Step 2: Generate mock logs and a test report file
 
       - name: Create Test Reports and Logs
         run: |
