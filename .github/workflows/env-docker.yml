@@ -13,7 +13,7 @@ jobs:
           DOCKER_USER: ${{ secrets.DOCKER_USERNAME }}
           DOCKER_PASS: ${{ secrets.DOCKER_TOKEN }}
 
-        run: 
+        run: |
           echo "Initializing Docker Authentication..."
           echo "$DOCKER_PASS" | docker login -u "$DOCKER_USER" --password-stdin
     
