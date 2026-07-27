@@ -1,0 +1,20 @@
+#Goal: Demonstrate using GitHub Env Variable as Secrets to Login Docker Hub
+name: GitHub Env Variable as Secrets for the Docker Hub access
+on: 
+  push: 
+    branches: [ "main" ]
+jobs:
+  docker-login-job:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Login to Docker using Env Variable
+        env:
+          DOCKER_USER: ${{ secrets.DOCKER_USERNAME }}
+          DOCKER_PASS: ${{ secrets.DOCKER_TOKEN }}
+
+        run: 
+          echo "Initializing Docker Authentication..."
+          echo "$DOCKER_PASS" | docker login -u "$DOCKER_USER" --password-stdin
+    
+
