@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Login to Docker using Env Variable
+      - name: Login to Docker using Env Variable Secrets
         env:
           DOCKER_USER: ${{ secrets.DOCKER_USERNAME }}
           DOCKER_PASS: ${{ secrets.DOCKER_TOKEN }}
